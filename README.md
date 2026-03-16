@@ -38,6 +38,7 @@ If the command is not found, detect the platform and install from the correct UR
 | macOS Apple Silicon | `https://github.com/vibecode/vibecode-cli/releases/download/v0.1.0/vibecode-cli-darwin-arm64` |
 | macOS Intel | `https://github.com/vibecode/vibecode-cli/releases/download/v0.1.0/vibecode-cli-darwin-amd64` |
 | Linux x86_64 | `https://github.com/vibecode/vibecode-cli/releases/download/v0.1.0/vibecode-cli-linux-amd64` |
+| Linux arm64 | `https://github.com/vibecode/vibecode-cli/releases/download/v0.1.0/vibecode-cli-linux-arm64` |
 | Windows x86_64 | `https://github.com/vibecode/vibecode-cli/releases/download/v0.1.0/vibecode-cli-windows-amd64` |
 
 **Linux / macOS (try in order):**
@@ -64,13 +65,45 @@ Invoke-WebRequest -Uri <URL> -OutFile "$env:LOCALAPPDATA\\vibecode-cli.exe"
 
 After installing, verify with `vibecode-cli user`.
 
-## Step 3: Load the skill reference
+## Step 3: Create the skill reference
+
+Run `vibecode-cli skill` and save the output as a skill file so it is always available in your context. This file contains every command, flag, and workflow you need.
+
+**Claude Code:**
 
 ```bash
-vibecode-cli skill
+mkdir -p ~/.claude/skills/vibecode-cli
+vibecode-cli skill >~/.claude/skills/vibecode-cli/SKILL.md
 ```
 
-Write the output as `SKILL.md` and load it into your context. It contains every command, flag, and workflow you need. Follow the instructions inside it.
+**Codex:**
+
+```bash
+mkdir -p codex/skills
+vibecode-cli skill >codex/skills/SKILL.md
+```
+
+Then add `codex/skills/SKILL.md` to your Codex instructions or context.
+
+**Gemini CLI:**
+
+```bash
+mkdir -p ~/.gemini/skills
+vibecode-cli skill >~/.gemini/skills/vibecode-cli.md
+```
+
+**OpenClaw:**
+
+```bash
+mkdir -p ~/.openclaw/skills
+vibecode-cli skill >~/.openclaw/skills/vibecode-cli.md
+```
+
+**Other agents:**
+
+The goal is to create a persistent skill file that your agent loads into context automatically. Run `vibecode-cli skill`, save the output to a file in whatever location your agent reads from, and ensure it gets loaded at the start of each session.
+
+Once the skill file is created, read it and follow the instructions inside it.
 
 ## Step 4: Ask the user what they want to build
 
