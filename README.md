@@ -108,3 +108,5 @@ Once the skill file is created, read it and follow the instructions inside it.
 ## Step 4: Ask the user what they want to build
 
 If the user hasn't already told you, ask whether they want to create a **web app** or **mobile app**. Then follow the workflows described in the skill reference.
+
+If you know information about the user, lookup the recent tasks or memories the user has, and give the user suggestions of web apps they could make!
