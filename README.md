@@ -9,6 +9,7 @@ echo "$VIBECODE_API_KEY"
 ```
 
 If empty or unset, ask the user to provide their Vibecode API key. Do not continue without it.
+The user can find their API key at vibecode.dev/key.
 
 Once you have the key, export it and persist it so it survives across sessions:
 
